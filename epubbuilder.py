@@ -433,7 +433,7 @@ def test():
     
     book.add_title_page()
     book.add_toc_page()
-    with open(r'test-files/YM7SV.png') as _file:
+    with open(r'test-files/revenge.500x800.jpg') as _file:
         book.add_cover(_file)
     
     book.add_css(r'main.css', 'main.css')
