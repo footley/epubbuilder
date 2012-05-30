@@ -15,6 +15,8 @@ import mimetypes
 import subprocess
 from genshi.template import TemplateLoader
 
+TEMPLATE_PATH = os.path.join(os.path.split(__file__)[0], "templates")
+
 class TocMapNode:
     """
     Represents a table of contents node, 
@@ -81,7 +83,7 @@ class EpubBook:
         """
         Initialize the member variables
         """
-        self.loader = TemplateLoader('templates')
+        self.loader = TemplateLoader(TEMPLATE_PATH)
         
         self.uuid = uuid.uuid1()
 
@@ -433,7 +435,8 @@ def test():
     
     book.add_title_page()
     book.add_toc_page()
-    with open(r'test-files/revenge.500x800.jpg') as _file:
+    image_path = os.path.join(os.path.split(__file__)[0], "test-files/revenge.500x800.jpg")
+    with open(image_path) as _file:
         book.add_cover(_file)
     
     book.add_css(r'main.css', 'main.css')
@@ -462,9 +465,8 @@ def test():
     with open('test.epub', 'w') as _file:
         _file.write(stream.getvalue())
     # check its validity
-    subprocess.call(
-        'java -jar epubcheck-3.0b5/epubcheck-3.0b5.jar test.epub'
-        , shell = True)
+    epubcheck_path = os.path.join(os.path.split(__file__)[0], "epubcheck-3.0b5/epubcheck-3.0b5.jar")
+    subprocess.call(['java', '-jar', epubcheck_path, 'test.epub'])
     
 if __name__ == '__main__':
     test()
