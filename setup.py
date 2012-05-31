@@ -31,7 +31,7 @@ setup(name='epubbuilder',
       url='https://github.com/footley/epubbuilder',
       install_requires=parse_requirements('requirements.txt'),
       packages=['epubbuilder'],
-      data_files=[('epubbuilder/templates': [
+      data_files=[('epubbuilder/templates', [
                          'container.xml', 
                          'content.opf',
                          'image.html',
@@ -39,8 +39,8 @@ setup(name='epubbuilder',
                          'toc.html',
                          'toc.ncx',
                          ]),
-                    ('epubbuilder/test-files': ['revenge.500x800.jpg']),
-                    ('epubbuilder/epubcheck-3.0b5': [
+                    ('epubbuilder/test-files', ['revenge.500x800.jpg']),
+                    ('epubbuilder/epubcheck-3.0b5', [
                            'COPYING.txt',
                            'README.txt',
                            'epubcheck-3.0b5.jar',
