@@ -51,6 +51,10 @@ class TocMapNode:
             child.__assign_play_order(next_play_order)
     
     def get_index_str(self):
+        """
+        constructs a string which gives both the index and the hierarchical 
+        position of the node
+        """
         if self.depth <= 1:
             return str(self.index)
         elif self.parent:
@@ -69,7 +73,6 @@ class EpubItem:
         Set the default values
         """
         self.id = ''
-        self.src_path = ''
         self.dest_path = ''
         self.mime_type = ''
         self.content = ''
@@ -178,7 +181,6 @@ class EpubBook:
         """
         item = EpubItem()
         item.id = 'image_%d' % (len(self.image_items) + 1)
-        item.src = src
         item.dest_path = dest_path
         try:
             with open(src) as _file:
@@ -215,13 +217,12 @@ class EpubBook:
         self.html_items[item.dest_path] = item
         return item
     
-    def add_css(self, src_path, dest_path):
+    def add_css(self, src, dest_path):
         """
         Add some css to the epub
         """
         item = EpubItem()
         item.id = 'css_%d' % (len(self.css_items) + 1)
-        item.src_path = src_path
         item.dest_path = dest_path
         item.mime_type = 'text/css'
         assert item.dest_path not in self.css_items
@@ -435,11 +436,12 @@ def test():
     
     book.add_title_page()
     book.add_toc_page()
-    image_path = os.path.join(os.path.split(__file__)[0], "test-files/revenge.500x800.jpg")
+    image_path = os.path.join(os.path.split(__file__)[0], 
+        "test-files/revenge.500x800.jpg")
     with open(image_path) as _file:
         book.add_cover(_file)
     
-    book.add_css(r'main.css', 'main.css')
+    book.add_css('main.css')
 
     item1 = book.add_html('1.html', get_minimal_html('Chapter 1'))
     item11 = book.add_html('2.html', get_minimal_html('Section 1.1'))
@@ -465,7 +467,8 @@ def test():
     with open('test.epub', 'w') as _file:
         _file.write(stream.getvalue())
     # check its validity
-    epubcheck_path = os.path.join(os.path.split(__file__)[0], "epubcheck-3.0b5/epubcheck-3.0b5.jar")
+    epubcheck_path = os.path.join(os.path.split(__file__)[0], 
+        "epubcheck-3.0b5/epubcheck-3.0b5.jar")
     subprocess.call(['java', '-jar', epubcheck_path, 'test.epub'])
     
 if __name__ == '__main__':
