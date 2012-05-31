@@ -223,6 +223,11 @@ class EpubBook:
         """
         item = EpubItem()
         item.id = 'css_%d' % (len(self.css_items) + 1)
+        try:
+            with open(src) as _file:
+                item.content = _file.read()
+        except TypeError:
+            item.content = src.read()
         item.dest_path = dest_path
         item.mime_type = 'text/css'
         assert item.dest_path not in self.css_items
@@ -441,7 +446,7 @@ def test():
     with open(image_path) as _file:
         book.add_cover(_file)
     
-    book.add_css('main.css')
+    #book.add_css('main.css', 'main.css')
 
     item1 = book.add_html('1.html', get_minimal_html('Chapter 1'))
     item11 = book.add_html('2.html', get_minimal_html('Section 1.1'))
