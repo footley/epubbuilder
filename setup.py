@@ -23,7 +23,7 @@ with open('README.md') as _file:
     long_desc = _file.read()
 
 setup(name='epubbuilder',
-      version='1.0',
+      version='0.1',
       description='fork of http://code.google.com/p/python-epub-builder/ to programmatically build EPUB books.',
       long_description = long_desc,
       author='Jonathan Butcher',
