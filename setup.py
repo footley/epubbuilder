@@ -32,7 +32,7 @@ setup(name='epubbuilder',
       install_requires=parse_requirements('requirements.txt'),
       packages=['epubbuilder'],
       package_dir={'epubbuilder': 'epubbuilder'},
-      package_data={'epubbuilder/templates': [
+      package_data={'templates': [
                          'container.xml', 
                          'content.opf',
                          'image.html',
@@ -40,8 +40,8 @@ setup(name='epubbuilder',
                          'toc.html',
                          'toc.ncx',
                          ],
-                    'epubbuilder/test-files': ['revenge.500x800.jpg'],
-                    'epubbuilder/epubcheck-3.0b5': [
+                    'test-files': ['revenge.500x800.jpg'],
+                    'epubcheck-3.0b5': [
                            'COPYING.txt',
                            'README.txt',
                            'epubcheck-3.0b5.jar',
