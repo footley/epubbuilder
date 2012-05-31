@@ -387,7 +387,7 @@ class EpubBook:
         for item in self.get_all_items():
             zip_outout.writestr(
                 os.path.join('OEBPS', item.dest_path), 
-                item.content, compress_type = zipfile.ZIP_DEFLATED)
+                item.content.encode('utf-8'), compress_type = zipfile.ZIP_DEFLATED)
 
     def __write_mime_type(self, zip_outout):
         """
