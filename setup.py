@@ -1,3 +1,4 @@
+import re
 from distutils.core import setup
 
 def parse_requirements(file_name):
