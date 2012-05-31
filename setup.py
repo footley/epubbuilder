@@ -31,6 +31,7 @@ setup(name='epubbuilder',
       url='https://github.com/footley/epubbuilder',
       install_requires=parse_requirements('requirements.txt'),
       packages=['epubbuilder'],
+      package_dir={'epubbuilder': 'epubbuilder'},
       package_data={'epubbuilder/templates': [
                          'container.xml', 
                          'content.opf',
