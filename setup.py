@@ -31,5 +31,6 @@ setup(name='epubbuilder',
                   ('epubcheck-3.0b5', ['*',
                                        'lib/*',
                                        ]),
+                 ],
       )
 
