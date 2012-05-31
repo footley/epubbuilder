@@ -31,17 +31,16 @@ setup(name='epubbuilder',
       url='https://github.com/footley/epubbuilder',
       install_requires=parse_requirements('requirements.txt'),
       packages=['epubbuilder'],
-      package_dir={'epubbuilder': 'epubbuilder'},
-      package_data={'templates': [
+      data_files=[('epubbuilder/templates': [
                          'container.xml', 
                          'content.opf',
                          'image.html',
                          'title-page.html',
                          'toc.html',
                          'toc.ncx',
-                         ],
-                    'test-files': ['revenge.500x800.jpg'],
-                    'epubcheck-3.0b5': [
+                         ]),
+                    ('epubbuilder/test-files': ['revenge.500x800.jpg']),
+                    ('epubbuilder/epubcheck-3.0b5': [
                            'COPYING.txt',
                            'README.txt',
                            'epubcheck-3.0b5.jar',
@@ -56,7 +55,7 @@ setup(name='epubbuilder',
                            'lib/sac-license.txt',
                            'lib/saxon-9.1.0.8.jar',
                            'lib/saxon-license.txt',
-                           ],
-                 },
+                           ]),
+                 ],
       )
 
