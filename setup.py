@@ -18,9 +18,8 @@ def parse_requirements(file_name):
                 requirements.append(line)
     
     return requirements
-    
-long_desc = 'fork of http://code.google.com/p/python-epub-builder/ to programmatically build EPUB books.'
-with open(README.md) as _file:
+
+with open('README.md') as _file:
     long_desc = _file.read()
 
 setup(name='epubbuilder',
