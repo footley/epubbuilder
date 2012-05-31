@@ -385,9 +385,13 @@ class EpubBook:
         Add the write all remaining items to the zip
         """
         for item in self.get_all_items():
+            content = item.content
+            if not item.mime_type.startswith('image'):
+                content = content.encode('utf-8')
             zip_outout.writestr(
                 os.path.join('OEBPS', item.dest_path), 
-                item.content.encode('utf-8'), compress_type = zipfile.ZIP_DEFLATED)
+                content, 
+                compress_type = zipfile.ZIP_DEFLATED)
 
     def __write_mime_type(self, zip_outout):
         """
